@@ -1,0 +1,22 @@
+﻿@model TravelsalProje.Models.MailRequest
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Yeni Mail Gönderme Sayfası</h1>
+<form method="post">
+    @Html.Label("Alıcı Mail Adresi")
+    <input type="text" asp-for="ReceiverMail" class="form-control" />
+    <br />
+    @Html.Label("Konu")
+    <input type ="text" asp-for="Subject" class="form-control" />
+    <br />
+    <br />
+    @Html.Label("İçerik")
+    <textarea cols="30" rows="5" asp-for="Body" class="form-control"></textarea>
+    <br />
+    <br />
+    <button class="btn btn-primary">Mail Gönder</button>
+</form>
+

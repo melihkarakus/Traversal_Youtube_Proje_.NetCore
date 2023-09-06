@@ -1,0 +1,68 @@
+﻿@model List<ApiMovieViewModel>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Api IMDB Top 100 Film Listesi</h1>
+<br />
+@*<table class="table table-striped">
+    <tr>
+        <th>#</th>
+        <th>Görsel</th>
+        <th>Film Adı</th>
+        <th>Imdb Puanı</th>
+        <th>Yapım Yılı</th>
+        <th>Fragman</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.rank</td>
+            <th><img src="@item.thumbnail" height="100" width="100" /></th>
+            <th>@item.title</th>
+            <td>@item.rating</td>
+            <td>@item.year</td>
+            <td><a href="#" class="btn btn-dark">Fragmanı İzle</a></td>
+        </tr>
+    }
+</table>*@
+<table class="table table-striped">
+    <tr>
+        <th class="text-center">#</th>
+        <th class="text-center">Görsel</th>
+        <th class="text-center">Film Adı</th>
+        <th class="text-center">Puanı</th>
+        <th class="text-center">Çıkış Yılı</th>
+        <th class="text-center">Fragman</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.rank</td>
+            <td>
+                <img class="rounded" src="@item.thumbnail" width="100" height="150" /> @*//1:1,5 oranında filmin görselini çektim.*@
+            </td>
+            <td class="text-center" style="zoom: 90%;"><b>@item.title</b></td>@* //style kısmında film isim taştığından dolayı %10 oranında küçülttüm*@
+            <td>@item.rating</td>
+            <td>@item.year</td>
+            <td>
+                @*//Bu butonda fragmanın oynatılacağı bir modal açılıyor*@.
+                <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#youTubeModal" data-thevideo="@item.trailer">
+                    <i class='bx bx-movie-play'></i> &nbsp;
+                    Fragman
+                </button>
+            </td>
+        </tr>
+    }
+</table>
+
+@*//Bu modal kodunu eklerseniz butona tıkladığınızda filmin trailerına ait youtube videosu popup modal olarak açılacaktır.*@
+<div class="modal fade" id="youTubeModal" tabindex="-1" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <iframe height="350" src=""></iframe>
+        </div>
+    </div>
+</div>
+<script src="~/sneat-1.0.0/assets/js/ui-modals.js"></script>

@@ -1,0 +1,13 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Excel Raporları</h1>
+<br />
+<a href="/Excel/StaticExcelReport/" class="btn btn-info">Statik Excel Raporu</a> @*excel ındex statik bir şekilde ise buraya çağırıyoruz*@
+<br />
+<br />
+<a href="/Excel/DestinationExcelReport/" class="btn btn-primary">Tur Rotaları Excel Raporu</a> @*// excel index dinamik bir şekilde buraya çağırıyoruz
+*@
