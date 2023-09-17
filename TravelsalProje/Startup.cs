@@ -14,6 +14,7 @@ using System.IO;
 using TravelsalProje.CQRS.Commands.DestinationCommands;
 using TravelsalProje.CQRS.Handlers.DestinationHandler;
 using TravelsalProje.Models;
+using MediatR;
 
 namespace TravelsalProje
 {
@@ -34,6 +35,9 @@ namespace TravelsalProje
             services.AddScoped<CreateDestinationCommandHandler>();
             services.AddScoped<RemoveDestinationCommandHandler>();
             services.AddScoped<UpdateDestinationCommandHandler>();
+
+            services.AddMediatR(typeof(Startup));
+
             services.AddLogging(x =>
             {
                 x.ClearProviders();

@@ -1,4 +1,4 @@
-﻿namespace TravelsalProje.CQRS.Results
+﻿namespace TravelsalProje.CQRS.Results.DestinationResults
 {
     public class GetDestinationByIDQueryResult
     {

@@ -1,6 +1,6 @@
 ﻿using DataAccessLayer.Concrete;
 using TravelsalProje.CQRS.Queries.DestinationQuery;
-using TravelsalProje.CQRS.Results;
+using TravelsalProje.CQRS.Results.DestinationResults;
 
 namespace TravelsalProje.CQRS.Handlers.DestinationHandler
 {
