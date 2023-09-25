@@ -4,14 +4,16 @@ using DataAccessLayer.Concrete;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DataAccessLayer.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20230923113255_migcommentappuserRealiton")]
+    partial class migcommentappuserRealiton
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -330,9 +332,6 @@ namespace DataAccessLayer.Migrations
                     b.Property<string>("CoverImaged")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("DayNight")
                         .HasColumnType("nvarchar(max)");
 
@@ -344,9 +343,6 @@ namespace DataAccessLayer.Migrations
 
                     b.Property<string>("Details2")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("GuideID")
-                        .HasColumnType("int");
 
                     b.Property<string>("Image")
                         .HasColumnType("nvarchar(max)");
@@ -361,8 +357,6 @@ namespace DataAccessLayer.Migrations
                         .HasColumnType("bit");
 
                     b.HasKey("DestinationsID");
-
-                    b.HasIndex("GuideID");
 
                     b.ToTable("Destinations");
                 });
@@ -423,12 +417,6 @@ namespace DataAccessLayer.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Description2")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("GuideListImage")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Image")
@@ -662,17 +650,6 @@ namespace DataAccessLayer.Migrations
                     b.Navigation("Destination");
                 });
 
-            modelBuilder.Entity("EntityLayer.Concrete.Destinations", b =>
-                {
-                    b.HasOne("EntityLayer.Concrete.Guide", "Guide")
-                        .WithMany("Destinations")
-                        .HasForeignKey("GuideID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Guide");
-                });
-
             modelBuilder.Entity("EntityLayer.Concrete.Reservation", b =>
                 {
                     b.HasOne("EntityLayer.Concrete.AppUser", "appUser")
@@ -755,11 +732,6 @@ namespace DataAccessLayer.Migrations
                     b.Navigation("comments");
 
                     b.Navigation("reservations");
-                });
-
-            modelBuilder.Entity("EntityLayer.Concrete.Guide", b =>
-                {
-                    b.Navigation("Destinations");
                 });
 #pragma warning restore 612, 618
         }

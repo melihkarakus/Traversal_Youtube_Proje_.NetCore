@@ -2,8 +2,10 @@
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Threading.Tasks;
 
 namespace TravelsalProje.Controllers
 {
@@ -11,13 +13,22 @@ namespace TravelsalProje.Controllers
     public class CommentController : Controller
     {
         CommentManager commentManager = new CommentManager(new EfCommentDal()); //businesslayer içindeki concrete içindeki sınıftan miras alınıyor
-        [HttpGet]
-        public PartialViewResult AddComment(int id)
+        private readonly UserManager<AppUser> _userManager;
+
+        public CommentController(UserManager<AppUser> userManager)
         {
-            ViewBag.i = id; //viewbag ile id ye gönderim yapıp bunu view içinde çağırıyoruz
+            _userManager = userManager;
+        }
+
+        [HttpGet]
+        public async Task<PartialViewResult> AddComment()
+        {
+            //ViewBag.destID = id; //viewbag ile id ye gönderim yapıp bunu view içinde çağırıyoruz
+            //var values = await _userManager.FindByNameAsync(User.Identity.Name);
+            //ViewBag.userID = values.Id;
             return PartialView();
         }
-        [HttpPost]
+        [HttpPost] 
         public IActionResult AddComment(Comment p)
         {
             p.CommentDate = Convert.ToDateTime(DateTime.Now.ToShortDateString()); // tanımlanan p parametresini comment sınıfımızdan çağırıyoruz

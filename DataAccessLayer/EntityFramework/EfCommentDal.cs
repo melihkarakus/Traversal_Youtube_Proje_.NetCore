@@ -21,5 +21,14 @@ namespace DataAccessLayer.EntityFramework
                 // yaradı bunun sebebi ise comment ındex tarafında city içindeki verileri getirmek için
             }
         }
+
+        public List<Comment> GetListCommentWithDestinationAndUser(int id)
+        {
+            using (var c = new Context())
+            {
+                return c.Comments.Where(x=>x.DestinationID == id).Include(x => x.AppUser).ToList(); // içi doldurmak için database de olan destination sınıfındaki bütün verileri getirmeye
+                // yaradı bunun sebebi ise comment ındex tarafında city içindeki verileri getirmek için
+            }
+        }
     }
 }

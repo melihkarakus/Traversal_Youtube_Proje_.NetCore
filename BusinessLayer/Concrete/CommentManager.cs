@@ -52,5 +52,10 @@ namespace BusinessLayer.Concrete
         {
             return _commentDal.GetListCommentWithDestination();// burada service tanımladığım imzayı burada listelemek için kullanıyorum
         }
+
+        public List<Comment> TGetListCommentWithDestinationAndUser(int id)
+        {
+            return _commentDal.GetListCommentWithDestinationAndUser(id);
+        }
     }
 }
