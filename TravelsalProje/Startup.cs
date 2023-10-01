@@ -69,6 +69,11 @@ namespace TravelsalProje
             });
 
             services.AddMvc();
+
+            services.ConfigureApplicationCookie(option =>
+            {
+                option.LoginPath = "/Login/SignIn";
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
