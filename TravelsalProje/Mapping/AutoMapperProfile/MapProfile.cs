@@ -2,6 +2,7 @@
 using DocumentFormat.OpenXml.Bibliography;
 using DTOLayer.DTOs.AnnouncementDTOs;
 using DTOLayer.DTOs.AppUserDTOs;
+using DTOLayer.DTOs.ContactDTOs;
 using EntityLayer.Concrete;
 
 namespace TravelsalProje.Mapping.AutoMapperProfile
@@ -24,6 +25,8 @@ namespace TravelsalProje.Mapping.AutoMapperProfile
 
             CreateMap<AnnouncementUpdateDTO, Announcement>();
             CreateMap<Announcement, AnnouncementUpdateDTO>();
+
+            CreateMap<SendMessageDTO, ContactUS>().ReverseMap();
         }
     }
 }
