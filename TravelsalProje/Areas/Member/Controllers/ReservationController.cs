@@ -65,5 +65,9 @@ namespace TravelsalProje.Areas.Member.Controllers
             reservationManager.TAdd(p); // p parametresini reservationmanager çağırıp p parametesine ekledik.
             return RedirectToAction("MyCurrentReservation");
         }
+        public IActionResult Deneme()
+        {
+            return View();
+        }
     }
 }

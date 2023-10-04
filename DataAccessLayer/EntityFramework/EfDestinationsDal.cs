@@ -20,5 +20,14 @@ namespace DataAccessLayer.EntityFramework
                 return c.Destinations.Where(x=>x.DestinationsID == id).Include(x=>x.Guide).FirstOrDefault();
             }
         }
+
+        public List<Destinations> GetLast4Destinations()
+        {
+            using (var context = new Context())
+            {
+                var values = context.Destinations.Take(4).OrderByDescending(x=>x.DestinationsID).ToList();
+                return values;
+            }
+        }
     }
 }

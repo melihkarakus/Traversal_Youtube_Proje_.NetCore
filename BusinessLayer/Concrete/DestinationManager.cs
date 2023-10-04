@@ -18,6 +18,11 @@ namespace BusinessLayer.Concrete
             _destinationDal = destinationDal;
         }
 
+        public List<Destinations> TGetLast4Destinations()
+        {
+            return _destinationDal.GetLast4Destinations();
+        }
+
         public void TAdd(Destinations t)
         {
             _destinationDal.Insert(t);
