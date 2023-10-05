@@ -15,6 +15,7 @@ using TravelsalProje.CQRS.Commands.DestinationCommands;
 using TravelsalProje.CQRS.Handlers.DestinationHandler;
 using TravelsalProje.Models;
 using MediatR;
+using Microsoft.AspNetCore.Mvc.Razor;
 
 namespace TravelsalProje
 {
@@ -68,7 +69,13 @@ namespace TravelsalProje
                 config.Filters.Add(new AuthorizeFilter(policy));
             });
 
-            services.AddMvc();
+            services.AddLocalization(opt =>
+            {
+                opt.ResourcesPath = "Resources";
+            });
+
+            services.AddMvc().AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix).AddDataAnnotationsLocalization();
+
 
             services.ConfigureApplicationCookie(option =>
             {
@@ -101,7 +108,10 @@ namespace TravelsalProje
             app.UseRouting();
 
             app.UseAuthorization();
-
+            var supportedCultures = new[] { "en", "fr", "es", "gr", "tr", "de" };
+            var localizationOption = new RequestLocalizationOptions().SetDefaultCulture(supportedCultures[4])
+                .AddSupportedCultures(supportedCultures).AddSupportedUICultures(supportedCultures);
+            app.UseRequestLocalization(localizationOption);
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
