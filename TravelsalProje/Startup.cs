@@ -16,6 +16,7 @@ using TravelsalProje.CQRS.Handlers.DestinationHandler;
 using TravelsalProje.Models;
 using MediatR;
 using Microsoft.AspNetCore.Mvc.Razor;
+using Microsoft.AspNetCore.Identity;
 
 namespace TravelsalProje
 {
@@ -48,7 +49,7 @@ namespace TravelsalProje
 
 
             services.AddDbContext<Context>(); //Ýdentity context eklemek için kullanýlýr
-            services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<Context>().AddErrorDescriber<CustomIdentityValidatior>().AddEntityFrameworkStores<Context>(); //Ýdentity içindeki sýnýflarý çaðýrmak için kullanýlýr 
+            services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<Context>().AddTokenProvider<DataProtectorTokenProvider<AppUser>>(TokenOptions.DefaultProvider).AddErrorDescriber<CustomIdentityValidatior>().AddEntityFrameworkStores<Context>(); //Ýdentity içindeki sýnýflarý çaðýrmak için kullanýlýr 
 
             services.AddHttpClient(); 
 
